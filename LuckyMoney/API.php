@@ -115,7 +115,9 @@ class API extends AbstractAPI
         $api = ($type === self::TYPE_NORMAL) ? self::API_SEND : self::API_SEND_GROUP;
 
         $params['wxappid'] = $this->merchant->app_id;
-
+        if ($type == self::TYPE_GROUP) {
+            unset($params['client_ip']);
+        }
         return $this->request($api, $params);
     }
 
